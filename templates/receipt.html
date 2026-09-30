@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Receipt</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="receipt-page">
+    <main class="receipt-card">
+        <span class="eyebrow">PARKEASE</span>
+        <h1>Parking Receipt</h1>
+        <p class="receipt-id">Receipt #{{ receipt.id }}</p>
+        <div class="receipt-details">
+            <div><span>Vehicle Number</span><strong>{{ receipt.vehicle_number }}</strong></div>
+            <div><span>Vehicle Type</span><strong>{{ receipt.vehicle_type }}</strong></div>
+            <div><span>Parking Slot</span><strong>{{ receipt.slot }}</strong></div>
+            <div><span>Duration</span><strong>{{ receipt.duration }} hours</strong></div>
+            <div><span>Rate</span><strong>₹{{ '%.2f'|format(receipt.rate) }}/hour</strong></div>
+            <div><span>Exit Time</span><strong>{{ receipt.exit_time }}</strong></div>
+        </div>
+        <div class="total-row"><span>Total Fee</span><strong>₹{{ '%.2f'|format(receipt.total_fee) }}</strong></div>
+        <div class="receipt-actions">
+            <button onclick="window.print()">Print Receipt</button>
+            <a href="{{ url_for('index') }}">Back to Dashboard</a>
+        </div>
+    </main>
+</body>
+</html>
